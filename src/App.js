@@ -6,6 +6,7 @@ import AllTasks from './pages/AllTasks';
 import CompletedTasks from './pages/CompletedTasks'
 import Priorities from './pages/Priorities'
 import Favorites from "./pages/Favorites";
+import Registration from "./pages/Registration";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/completed-tasks" element={<CompletedTasks />} />
         <Route path="/priorities" element={<Priorities />} />
+        <Route path="/register" element={<Registration/>}/>
     </Route>
   </Routes>
   );
