@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "../axios";
 
 export const getTasks = async () => {
   try {
-    const response = await axios.get("/tasks");
-    return response.data;
+    const {data} = await axios.get("/tasks");
+    return data;
   } catch (err) {
     console.log(err);
   }

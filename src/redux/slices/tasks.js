@@ -1,49 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from '../../axios.js'
+
+export const getTasks = createAsyncThunk('getTasks', async () => {
+  const {data} = await axios.get('/tasks');
+  return data;
+});
 
 const initialState = {
-  tasks: [],
-  loading: false,
-  error: null,
+  items: [],
+  status: 'loading',
 };
 
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {
-    getTasksStart: state => {
-      state.loading = true;
-      state.error = null;
+  reducers: {},
+  extraReducers: {
+    [getTasks.pending]: (state) => {
+      state.status = 'loading';
     },
-    getTasksSuccess: (state, { payload }) => {
-      state.loading = false;
-      state.tasks = payload;
+    [getTasks.fulfilled]: (state, action) => {
+      state.status = 'loaded';
+      state.items = action.payload;
     },
-    getTasksFailure: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
+    [getTasks.rejected]: (state) => {
+      state.status = 'error';
     },
-    addTask: (state, action) => {
-      state.tasks.push(action.payload);
-    },
-    updateTask: (state, action) => {
-      const { id, task } = action.payload;
-      const index = state.tasks.findIndex(task => task._id === id);
-      state.tasks[index] = task;
-    },
-    removeTask: (state, action) => {
-      const { id } = action.payload;
-      state.tasks = state.tasks.filter(task => task._id !== id);
-    },
-  },
+  }
 });
 
 export const tasksReducer = tasksSlice.reducer;
-
-export const {
-  getTasksStart,
-  getTasksSuccess,
-  getTasksFailure,
-  addTask,
-  updateTask,
-  deleteTask,
-} = tasksSlice.actions;

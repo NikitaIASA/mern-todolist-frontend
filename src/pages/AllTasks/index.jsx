@@ -1,26 +1,23 @@
 import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "../../redux/slices/tasks";
-import { getTasks } from "../../API/tasksAPI";
+// import { getTasks } from "../../API/tasksAPI";
+import {getTasks} from "../../redux/slices/tasks";
 
 const ALlTasks = () => {
-  const tasks = useSelector((state) => state.tasks.tasks);
-  const dispatch = useDispatch;
+  const tasks = useSelector((state) => state.tasks.items);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const data = await getTasks();
-      data.forEach((task) => dispatch(addTask(task)));
-    })();
-  }, [dispatch]);
-
+    dispatch(getTasks());
+  }, [])
+  
   return (
     <Grid item xs={8}>
       <ul>
-        {tasks.map((task) => (
-          <li key={task._id}>
-            {task.title}
+        {tasks.map((t) => (
+          <li key={t._id}>
+            {t.title}
           </li>
         ))}
       </ul>
