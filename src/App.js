@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "./layout/Layout";
@@ -11,8 +12,15 @@ import Login from "./pages/Login";
 
 import Header from "./layout/Header";
 import { Container } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { fetchAuthMe } from "./redux/slices/auth";
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, []);
   return (
     <>
       <Container maxWidth="lg">
