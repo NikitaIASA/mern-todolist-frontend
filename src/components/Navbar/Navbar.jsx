@@ -9,15 +9,17 @@ import ListItemText from '@mui/material/ListItemText';
 import { NavbarItems } from './NavbarItems';
 import { navbarStyles } from './styles';
 import { useNavigate } from "react-router-dom";
+import { Grid } from '@mui/material';
+import { Container } from '@mui/material';
 
 const Navbar = () => {
     const navigate = useNavigate();
 
     return (
+      <Container maxWidth="lg">
         <Drawer
           sx={navbarStyles.drawer}
           variant="permanent"
-          anchor="left"
       >
         <Toolbar />
         <Divider />
@@ -41,6 +43,7 @@ const Navbar = () => {
           ))}
         </List>
       </Drawer>
+      </Container>
     );
 };
 

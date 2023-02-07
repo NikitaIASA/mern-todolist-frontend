@@ -1,16 +1,6 @@
-.root {
-  background-color: #fff;
-  padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 30px;
-}
-
-.inner {
-  display: flex;
-  justify-content: space-between;
-}
-
 .logo {
+  display: flex;
+  align-items: center;
   background-color: black;
   color: #fff;
   font-weight: 700;
@@ -20,13 +10,11 @@
   border-radius: 5px;
   padding: 0 15px;
   text-decoration: none;
-
-  &:hover {
-    background-color: #e44232;
-  }
 }
 
 .buttons {
+  display: flex;
+  flex-wrap: wrap;
   button {
     margin-left: 10px;
   }
