@@ -23,7 +23,7 @@ function App() {
   }, []);
   return (
     <>
-      <Container maxWidth="lg">
+      <Container>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />

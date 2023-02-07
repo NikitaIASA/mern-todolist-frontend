@@ -23,9 +23,9 @@ const Registration = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      fullName:"oleg",
-      email: "oleg@gmail.com",
-      password: "oleg12345",
+      fullName:"",
+      email: "",
+      password: "",
     },
   });
 
