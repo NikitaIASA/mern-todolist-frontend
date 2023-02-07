@@ -6,6 +6,18 @@ export const getTasks = createAsyncThunk('getTasks', async () => {
   return data;
 });
 
+export const removeTask = createAsyncThunk('removeTask', async (id) => {
+  await axios.delete(`/tasks/${id}`);
+});
+
+export const addTask = createAsyncThunk('addTask', async (params) => {
+ const {data} = await axios.post('/tasks', params);
+ return data;
+});
+
+
+
+
 const initialState = {
   items: [],
   status: 'loading',
@@ -24,6 +36,24 @@ const tasksSlice = createSlice({
       state.items = action.payload;
     },
     [getTasks.rejected]: (state) => {
+      state.status = 'error';
+    },
+
+    [removeTask.pending]: (state, action) => {
+      state.items = state.items.filter((obj) => obj._id !== action.meta.arg);
+    },
+
+    
+    [addTask.pending]: (state, action) => {
+      state.status = 'loading';
+    },
+    
+    [addTask.fulfilled]: (state, action) => {
+      state.status = 'loading';
+      state.items.push(action.payload);
+    },
+    
+    [addTask.rejected]: (state, action) => {
       state.status = 'error';
     },
   }

@@ -23,7 +23,6 @@ function App() {
   }, []);
   return (
     <>
-      <Container>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -35,7 +34,6 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Route>
         </Routes>
-      </Container>
     </>
   );
 }

@@ -1,29 +1,58 @@
 import React, { useEffect } from "react";
-import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 // import { getTasks } from "../../API/tasksAPI";
+
 import { getTasks } from "../../redux/slices/tasks";
-import Navbar from "../../components/Navbar/Navbar";
+import { selectIsAuth } from "../../redux/slices/auth";
+
+import { Container } from "@mui/system";
+
+import TaskItem from "../../components/TaskItem";
+import TaskForm from "../../components/TaskForm";
+
+import styles from "./AllTasks.module.scss";
 
 const AllTasks = () => {
   const tasks = useSelector((state) => state.tasks.items);
+  const isAuth = useSelector(selectIsAuth);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getTasks());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
-      <Grid container>
-        <Grid item md={6}>
-          <ul>
-            {tasks.map((t) => (
-              <li key={t._id}>{t.title}</li>
-            ))}
-          </ul>
-        </Grid>
-      </Grid>
+      <main className={styles.main}>
+        <Container maxWidth="lg">
+          <div className={styles.inner}>
+            {isAuth ? (
+              <>
+                <ul className={styles.list}>
+                  {tasks ? (
+                    tasks.map((task) => (
+                      <TaskItem
+                        key={task._id}
+                        id={task._id}
+                        title={task.title}
+                        desc={task.desc}
+                      />
+                    ))
+                  ) : (
+                    <p>No Tasks</p>
+                  )}
+                </ul>
+                <TaskForm/>
+              </>
+            ) : (
+              <>
+                <p>Треба авторизуватися</p>
+              </>
+            )}
+          </div>
+        </Container>
+      </main>
     </>
   );
 };
