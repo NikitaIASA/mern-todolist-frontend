@@ -16,8 +16,6 @@ export const addTask = createAsyncThunk('addTask', async (params) => {
 });
 
 
-
-
 const initialState = {
   items: [],
   status: 'loading',
@@ -28,6 +26,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    // GetAllTasks
     [getTasks.pending]: (state) => {
       state.status = 'loading';
     },
@@ -39,18 +38,19 @@ const tasksSlice = createSlice({
       state.status = 'error';
     },
 
+    // DeleteTask
     [removeTask.pending]: (state, action) => {
       state.items = state.items.filter((obj) => obj._id !== action.meta.arg);
     },
 
-    
+    // AddNewTask
     [addTask.pending]: (state, action) => {
       state.status = 'loading';
     },
     
     [addTask.fulfilled]: (state, action) => {
-      state.status = 'loading';
-      state.items.push(action.payload);
+      state.status = 'loaded';
+      state.items.push(action.meta.arg);
     },
     
     [addTask.rejected]: (state, action) => {

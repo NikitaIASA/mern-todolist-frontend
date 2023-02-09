@@ -1,16 +1,13 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-
+import {Typography, TextField, Paper, Button} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 // import {fetchAuth} from "../../API/authAPI";
 import { useForm } from "react-hook-form";
 import { selectIsAuth, fetchAuth} from "../../redux/slices/auth";
+import { Navigate } from "react-router-dom";
 
 import styles from "./Login.module.scss";
-import { Navigate } from "react-router-dom";
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -29,7 +26,6 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     const data = await dispatch(fetchAuth(values));
-    console.log(data);
 
     if (!data.payload) {
       return alert("Не вдалося авторизоватися")
