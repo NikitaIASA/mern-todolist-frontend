@@ -36,13 +36,24 @@ const AllTasks = () => {
                       id={task._id}
                       title={task.title}
                       desc={task.desc}
-                      showModal={() => {setSelectedTask(task); console.log(task)}}
+                      completed={task.completed}
+                      showModal={() => {
+                        setSelectedTask(task);
+                        console.log(task);
+                      }}
                     />
                   ))
                 ) : (
                   <p>No Tasks</p>
                 )}
               </ul>
+              <NewTaskForm />
+              {selectedTask && (
+                <TaskModal
+                  task={selectedTask}
+                  onClose={() => setSelectedTask(null)}
+                />
+              )}
             </>
           ) : (
             <>
@@ -50,12 +61,7 @@ const AllTasks = () => {
             </>
           )}
         </div>
-        <NewTaskForm />
-        {selectedTask && (
-        <TaskModal task={selectedTask} onClose={() => setSelectedTask(null)}/>
-      )}
       </main>
-
     </>
   );
 };
