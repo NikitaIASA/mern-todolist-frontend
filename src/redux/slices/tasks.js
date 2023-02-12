@@ -15,7 +15,7 @@ export const addTask = createAsyncThunk("addTask", async (params) => {
   return data;
 });
 
-export const completeTask = createAsyncThunk("completeTask", async (id) => {
+export const toggleTaskCompletion = createAsyncThunk("toggleTaskCompletion ", async (id) => {
   await axios.post(`/tasks/${id}`, id);
 });
 
@@ -60,17 +60,17 @@ const tasksSlice = createSlice({
       state.status = "error";
     },
 
-    [completeTask.pending]: (state, action) => {
+    [toggleTaskCompletion.pending]: (state, action) => {
       state.status = "loading";
       const taskIndex = state.items.findIndex(task => task._id === action.meta.arg);
-      state.items[taskIndex].completed = true;  
+      state.items[taskIndex].completed =  !state.items[taskIndex].completed;  
     },
 
-    [completeTask.fulfilled]: (state, action) => {
+    [toggleTaskCompletion.fulfilled]: (state, action) => {
       state.status = "loaded";
     },
 
-    [completeTask.rejected]: (state, action) => {
+    [toggleTaskCompletion.rejected]: (state, action) => {
       state.status = "error";
     },
   },

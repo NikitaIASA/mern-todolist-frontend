@@ -3,7 +3,7 @@ import React from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useDispatch } from "react-redux";
-import { completeTask, removeTask } from "../../redux/slices/tasks";
+import { toggleTaskCompletion, removeTask } from "../../redux/slices/tasks";
 
 import styles from "./TaskItem.module.scss";
 
@@ -17,8 +17,8 @@ const TaskItem = ({title, desc, id, showModal, completed}) => {
     }
   }
   
-  const completeTaskHandler = () => {
-    disptach(completeTask(id));
+  const toggleTaskCompletionHandler = () => {
+    disptach(toggleTaskCompletion(id));
   };
 
   return (
@@ -28,7 +28,7 @@ const TaskItem = ({title, desc, id, showModal, completed}) => {
         {/* <p className={styles.desc}>{desc}</p> */}
       </div>
       <div className={styles.buttons}>
-        <button className={styles.button} onClick={completeTaskHandler}>
+        <button className={styles.button} onClick={toggleTaskCompletionHandler}>
         <CheckIcon className={styles.check}/>
         </button>
         <button className={styles.button} onClick={removeTaskHandler}>
