@@ -1,8 +1,13 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/slices/tasks";
 import { TextField, Button } from "@mui/material";
+
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
 
 import styles from "./NewTaskForm.module.scss";
 
@@ -19,6 +24,7 @@ const AddTaskForm = () => {
     defaultValues: {
       title: "",
       desc: "",
+      priority: "",
     },
   });
 
@@ -28,9 +34,9 @@ const AddTaskForm = () => {
         // ! Переписать это
         title: values.title,
         desc: values.desc,
+        priority: values.priority,
         completed: false,
         specialSelected: false,
-        priority: "high",
       })
     );
     console.log(data);
@@ -44,7 +50,19 @@ const AddTaskForm = () => {
 
   return (
     <div className={styles.newTaskForm}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <FormControl className={styles.formControl}>
+          <InputLabel>Пріоритет</InputLabel>
+          <Select
+            {...register("priority", { required: "Оберіть пріорітет" })}
+            label="Пріоритет"
+          >
+            <MenuItem value={"high"}>high</MenuItem>
+            <MenuItem value={"medium"}>medium</MenuItem>
+            <MenuItem value={"low"}>low</MenuItem>
+          </Select>
+        </FormControl>
+
         <TextField
           className={styles.field}
           label="Назва таски"

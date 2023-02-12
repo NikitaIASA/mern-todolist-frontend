@@ -6,6 +6,11 @@ export const getTasks = createAsyncThunk("getTasks", async () => {
   return data;
 });
 
+export const getTasksByStatus = createAsyncThunk("getTasksByStatus", async (status) => {
+  const { data } = await axios.get(`/tasks?status=${status}`);
+  return data;
+});
+
 export const removeTask = createAsyncThunk("removeTask", async (id) => {
   await axios.delete(`/tasks/${id}`);
 });
@@ -72,6 +77,18 @@ const tasksSlice = createSlice({
 
     [toggleTaskCompletion.rejected]: (state, action) => {
       state.status = "error";
+    },
+
+
+    [getTasksByStatus.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [getTasksByStatus.fulfilled]: (state, action) => {
+      state.status = 'loaded';
+      state.items = action.payload;
+    },
+    [getTasksByStatus.rejected]: (state, action) => {
+      state.status = 'error';
     },
   },
 });
