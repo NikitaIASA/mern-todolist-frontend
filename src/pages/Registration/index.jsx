@@ -1,10 +1,5 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-
+import {Typography, TextField, Paper, Button, Avatar} from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister, selectIsAuth } from "../../redux/slices/auth";

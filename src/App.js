@@ -10,8 +10,6 @@ import Favorites from "./pages/Favorites";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 
-import Header from "./layout/Header";
-import { Container } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { fetchAuthMe } from "./redux/slices/auth";
 
