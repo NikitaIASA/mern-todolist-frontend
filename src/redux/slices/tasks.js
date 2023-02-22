@@ -1,13 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../../axios.js";
 
-export const getTasks = createAsyncThunk("getTasks", async () => {
-  const { data } = await axios.get("/tasks");
-  return data;
-});
-
-export const getTasksByStatus = createAsyncThunk("getTasksByStatus", async (status) => {
-  const { data } = await axios.get(`/tasks?status=${status}`);
+export const getTasks = createAsyncThunk("getTasks", async (params) => {
+  const {completed} = params;
+  const { data } = await axios.get(`/tasks?completed=${completed}`);
   return data;
 });
 
@@ -77,18 +73,6 @@ const tasksSlice = createSlice({
 
     [toggleTaskCompletion.rejected]: (state, action) => {
       state.status = "error";
-    },
-
-
-    [getTasksByStatus.pending]: (state) => {
-      state.status = 'loading';
-    },
-    [getTasksByStatus.fulfilled]: (state, action) => {
-      state.status = 'loaded';
-      state.items = action.payload;
-    },
-    [getTasksByStatus.rejected]: (state, action) => {
-      state.status = 'error';
     },
   },
 });
