@@ -2,7 +2,14 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../redux/slices/tasks";
-import { TextField, Button, InputLabel, MenuItem, Select, FormControl } from "@mui/material";
+import {
+  TextField,
+  Button,
+  InputLabel,
+  MenuItem,
+  Select,
+  FormControl,
+} from "@mui/material";
 
 import styles from "./NewTaskForm.module.scss";
 
@@ -46,6 +53,7 @@ const AddTaskForm = () => {
   return (
     <div className={styles.newTaskForm}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <h3>Створити нову таску</h3>
         <FormControl className={styles.formControl}>
           <InputLabel>Пріоритет</InputLabel>
           <Select

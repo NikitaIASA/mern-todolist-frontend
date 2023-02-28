@@ -43,9 +43,10 @@ const AllTasks = () => {
             <>
               <div className={styles.buttons}>
                 <Button variant="contained" className={styles.filterButton} onClick={fetchAllTasks}>All</Button>
-                <Button variant="contained" className={styles.filterButton} onClick={fetchCompletedTasks}>Completed</Button>
+                <Button variant="contained" className={styles.filterButton} onClick={fetchCompletedTasks}>Done</Button>
                 <Button variant="contained" className={styles.filterButton} onClick={fetchNonCompletedTasks}>Todo</Button>
               </div>
+              <NewTaskForm />
               <ul className={styles.list}>
                 {tasks ? (
                   tasks.map((task) => (
@@ -65,7 +66,12 @@ const AllTasks = () => {
                   <p>No Tasks</p>
                 )}
               </ul>
-              <NewTaskForm />
+              <div className={styles.buttons}>
+                <Button variant="contained" className={styles.filterButton} onClick={fetchAllTasks}>Delete done tasks</Button>
+                <Button variant="contained" className={styles.filterButton} onClick={fetchCompletedTasks}>Delete all tasks</Button>
+                
+              </div>
+
               {selectedTask && (
                 <TaskModal
                   task={selectedTask}

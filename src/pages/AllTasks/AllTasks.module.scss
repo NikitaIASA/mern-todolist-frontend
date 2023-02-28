@@ -1,10 +1,9 @@
 .buttons {
   margin: 25px 0;
   display: flex;
-  justify-content: center;
-  gap: 50px;
+  justify-content: space-between;
 }
 
 .filterButton {
-    padding: 7px 80px;
+    padding: 7px 80px !important;
 }

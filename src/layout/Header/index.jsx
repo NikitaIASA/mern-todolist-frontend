@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Toolbar disableGutters>
           <Link className={styles.logo} to="/">
             TodoList
@@ -75,7 +75,7 @@ const Header = () => {
               ))}
             </Menu>
           </Box>
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -92,7 +92,7 @@ const Header = () => {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {menuItems.map((page) => (
               <Button
