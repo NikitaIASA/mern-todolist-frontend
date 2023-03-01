@@ -11,21 +11,21 @@ const TaskModal = ({ task, onClose }) => {
       <div className={styles.TaskModal}>
         <div className={styles.infoBlock}>
           <span className={styles.infoBlock__title}>Назва</span>
-          <span className={styles.infoBlock__text}>{task.title}</span>
+          <p className={styles.infoBlock__text}>{task.title}</p>
         </div>
         <div className={styles.infoBlock}>
           <span className={styles.infoBlock__title}>Опис</span>
-          <span className={styles.infoBlock__text}>{task.desc}</span>
+          <p className={styles.infoBlock__text}>{task.desc}</p>
         </div>
         <div className={styles.infoBlock}>
           <span className={styles.infoBlock__title}>Статус</span>
-          <span className={styles.infoBlock__text}>
+          <p className={styles.infoBlock__text}>
             {task.completed ? "Виконано" : "Не виконано"}
-          </span>
+          </p>
         </div>
         <div className={styles.infoBlock}>
           <span className={styles.infoBlock__title}>Пріоритет</span>
-          <span className={styles.infoBlock__text}>{task.priority}</span>
+          <p className={styles.infoBlock__text}>{task.priority}</p>
         </div>
         <CloseIcon className={styles.closeBtn} onClick={onClose} />
       </div>

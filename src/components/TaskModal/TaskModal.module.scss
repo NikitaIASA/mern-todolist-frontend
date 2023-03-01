@@ -37,6 +37,7 @@
   }
   &__text {
     width: 70%;
+    word-wrap: break-word; /* wrap long words */
   }
   &:nth-of-type(odd) {
     background-color: #e8e8e8;

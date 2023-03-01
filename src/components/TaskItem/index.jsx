@@ -1,11 +1,12 @@
 import React from "react";
 
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import Checkbox from '@mui/material/Checkbox';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from "react-redux";
 import { toggleTaskCompletion, removeTask } from "../../redux/slices/tasks";
 
 import styles from "./TaskItem.module.scss";
+
 
 const TaskItem = ({title, desc, id, showModal, completed}) => {
 
@@ -28,12 +29,8 @@ const TaskItem = ({title, desc, id, showModal, completed}) => {
         {/* <p className={styles.desc}>{desc}</p> */}
       </div>
       <div className={styles.buttons}>
-        <button className={styles.button} onClick={toggleTaskCompletionHandler}>
-        <CheckIcon className={styles.check}/>
-        </button>
-        <button className={styles.button} onClick={removeTaskHandler}>
-          <ClearIcon/>
-        </button>
+        <Checkbox checked={completed} color="success" className={styles.button} onClick={toggleTaskCompletionHandler}/>
+        <DeleteIcon className={styles.deleteButton} onClick={removeTaskHandler}/>
       </div>
     </li>
   );
