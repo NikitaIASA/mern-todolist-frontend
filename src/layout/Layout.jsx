@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Outlet />
       </Container>
     </>

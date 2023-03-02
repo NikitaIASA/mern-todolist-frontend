@@ -21,17 +21,18 @@
 
 .buttons {
     display: flex;
+    align-items: center;
     gap: 10px;
-    // padding: 20px;
+    
 }
 
 .button {
     cursor: pointer;
-    border: none;
 }
 
-.check {
-    
+.deleteButton {
+    cursor: pointer;
+    color: red;
 }
 
 .completed {
